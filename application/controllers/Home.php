@@ -12,12 +12,13 @@ class Home extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
-	public function getNewsByDate()
+	public function getPostsByDate($date)
 	{
 		$this->load->model('posts_model');
 		$data['server_answer'] = $this->posts_model->test();
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
+		echo $date;
 		$this->load->view('feed', $data);
 		$this->load->view('templates/footer');
 	}
