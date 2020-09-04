@@ -1,1 +1,0 @@
-<h3>Incredible posts</h3>
