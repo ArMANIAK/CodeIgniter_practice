@@ -36,4 +36,15 @@ class Posts_model extends CI_Model
         $result = $this->db->query($sql);
         return $result->result();
     }
+
+    public function filterByAuthor($authorId)
+    {
+        $sql = "SELECT *
+                FROM posts
+                RIGHT JOIN authors 
+                ON posts.author = authors.id
+                WHERE posts.author='$authorId'";
+        $result = $this->db->query($sql);
+        return $result->result();
+    }
 }
