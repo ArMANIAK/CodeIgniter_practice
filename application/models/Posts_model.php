@@ -9,8 +9,14 @@ class Posts_model extends CI_Model
                 $this->load->database();
     }
 
-    public function test()
+    public function getAllPosts()
     {
-        return 'Testing db connection from model';
+        $sql = "SELECT *
+                FROM posts
+                RIGHT JOIN authors 
+                ON posts.author = authors.id";
+        $result = $this->db->query($sql);
+        return $result->result();
     }
+
 }
