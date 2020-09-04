@@ -21,5 +21,13 @@ class Posts extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function getAuthorsList()
+	{
+		$this->load->model('posts_model');
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		foreach($this->posts_model->authorsList() as $data['author']) $this->load->view('templates/author', $data);
+		$this->load->view('templates/footer');
+	}
 
 }
