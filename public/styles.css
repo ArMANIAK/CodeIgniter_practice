@@ -1,0 +1,28 @@
+h1 {
+    color: red;
+}
+
+div.container {
+    display: flex;
+    align-items: flex-start;
+}
+
+nav {
+    max-width: 300px;
+    padding: 10px;
+    background-color: beige;
+}
+
+section.content {
+    width: 100%;
+}
+
+/*
+    Styles for posts
+*/
+
+article.post {
+    padding: 15px;
+    margin: 0px 10px 15px;
+    background-color: bisque;
+}
