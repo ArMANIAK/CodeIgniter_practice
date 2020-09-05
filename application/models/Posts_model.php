@@ -29,14 +29,6 @@ class Posts_model extends CI_Model
         return $result->result();
     }
 
-    public function authorsList()
-    {
-        $sql = "SELECT *
-                FROM authors";
-        $result = $this->db->query($sql);
-        return $result->result();
-    }
-
     public function filterByAuthor($authorId)
     {
         $sql = "SELECT *
