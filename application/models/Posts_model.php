@@ -11,43 +11,36 @@ class Posts_model extends CI_Model
 
     public function getAllPosts()
     {
-        $sql = "SELECT *
-                FROM posts
-                RIGHT JOIN authors 
-                ON posts.author = authors.id";
-        $result = $this->db->query($sql);
+        $this->db->from('posts')
+                ->join('authors', 'posts.author = authors.authorId', 'right');
+        $result = $this->db->get();
         return $result->result();
     }
 
-    public function filterByDate($date) {
-        $sql = "SELECT *
-                FROM posts
-                RIGHT JOIN authors 
-                ON posts.author = authors.id
-                WHERE posts.date='$date'";
-        $result = $this->db->query($sql);
+    public function filterByDate($date) 
+    {
+        $this->db->from('posts')
+                ->join('authors', 'posts.author = authors.authorId', 'right')
+                ->where('posts.date', $date);
+        $result = $this->db->get();
         return $result->result();
     }
 
     public function filterByAuthor($authorId)
     {
-        $sql = "SELECT *
-                FROM posts
-                RIGHT JOIN authors 
-                ON posts.author = authors.id
-                WHERE posts.author='$authorId'";
-        $result = $this->db->query($sql);
+        $this->db->from('posts')
+                ->join('authors', 'posts.author = authors.authorId', 'right')
+                ->where('posts.author', $authorId);
+        $result = $this->db->get();
         return $result->result();
     }
 
     public function getTagsForPost($postId)
     {
-        $sql = "SELECT *
-                FROM posts_tags
-                RIGHT JOIN tags 
-                ON tags.id = posts_tags.tag_id
-                WHERE posts_tags.post_id='$postId'";
-        $result = $this->db->query($sql);
+        $this->db->from('posts_tags')
+                ->join('tags', 'tags.id = posts_tags.tag_id', 'right')
+                ->where('posts_tags.post_id', $postId);
+        $result = $this->db->get();
         return $result->result();
     }
 }
