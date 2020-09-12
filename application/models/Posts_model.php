@@ -35,6 +35,16 @@ class Posts_model extends CI_Model
         return $result->result();
     }
 
+    public function filterByTag($tagId)
+    {
+        $this->db->from('posts')
+                ->join('authors', 'posts.author = authors.authorId', 'right')
+                ->join('posts_tags', 'posts.id = posts_tags.post_id', 'right')
+                ->where('posts_tags.tag_id', $tagId);
+        $result = $this->db->get();
+        return $result->result();
+    }
+
     public function getTagsForPost($postId)
     {
         $this->db->from('posts_tags')
