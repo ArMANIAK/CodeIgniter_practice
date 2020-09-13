@@ -15,4 +15,19 @@ class Authors extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function showAuthorPage($authorId)
+	{
+		$this->load->model('posts_model');
+		$this->load->model('authors_model');
+		$data['author'] = $this->authors_model->getAuthorInfo($authorId)[0];
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/author', $data);
+		foreach($this->posts_model->filterByAuthor($authorId) as $data['post']) 
+		{
+			$data['tags'] = $this->posts_model->getTagsForPost($data['post']->id);
+			$this->load->view('templates/post', $data);
+		}
+		$this->load->view('templates/footer');
+	}
 }
