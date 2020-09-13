@@ -16,4 +16,11 @@ class Authors_model extends CI_Model
         return $result->result();
     }
 
+    public function getAuthorInfo($authorId)
+    {
+        $this->db->from('authors')
+                ->where('authorId', $authorId);
+        $result = $this->db->get();
+        return $result->result();
+    }
 }
