@@ -11,9 +11,9 @@ class Authors_model extends CI_Model
 
     public function authorsList()
     {
-        $sql = "SELECT *
-                FROM authors";
-        $result = $this->db->query($sql);
+        $this->db->from('authors');
+        $result = $this->db->get();
         return $result->result();
     }
+
 }
