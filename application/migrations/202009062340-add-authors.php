@@ -7,7 +7,7 @@ class Migration_Add_authors extends CI_Migration {
         public function up()
         {
                 $this->dbforge->add_field(array(
-                        'id' => array(
+                        'authorId' => array(
                                 'type' => 'INT',
                                 'constraint' => 10,
                                 'unsigned' => TRUE,
