@@ -29,6 +29,17 @@ class Posts extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function showPostPage($postId) 
+	{
+		$this->load->model('posts_model');
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$data['post'] = $this->posts_model->getPost($postId)[0];
+		$data['tags'] = $this->posts_model->getTagsForPost($postId);
+		$this->load->view('post_page', $data);
+		$this->load->view('templates/footer');
+	}
+
 	public function getPostsByAuthor($authorId)
 	{
 		$this->load->model('posts_model');
