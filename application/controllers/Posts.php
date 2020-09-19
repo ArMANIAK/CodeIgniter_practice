@@ -40,6 +40,12 @@ class Posts extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function viewsIncrement($postId) 
+	{
+		$this->load->model('posts_model');
+		$this->posts_model->incrementViews($postId);
+	}
+
 	public function getPostsByAuthor($authorId)
 	{
 		$this->load->model('posts_model');

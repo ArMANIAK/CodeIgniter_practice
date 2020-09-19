@@ -26,6 +26,16 @@ class Posts_model extends CI_Model
         return $result->result();
     }
 
+    public function incrementViews($postId) 
+	{
+        $this->db->from('posts')
+                ->where('id', $postId);
+        $result = $this->db->get();
+        $posts = $result->result();
+        $this->db->where('id', $postId);
+        $this->db->update('posts', array('newsViews' => $posts[0]->newsViews + 1));
+	}
+
     public function filterByDate($date) 
     {
         $this->db->from('posts')
