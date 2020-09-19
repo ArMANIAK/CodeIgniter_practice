@@ -25,6 +25,11 @@ class Migration_Add_authors extends CI_Migration {
                             'type' => 'VARCHAR',
                             'constraint' => '1023',
                         ),
+                        'profileViews' => array(
+                                'type' => 'INT',
+                                'constraint' => 10,
+                                'unsigned' => TRUE
+                        ),
                 ));
                 $this->dbforge->add_key('id', TRUE);
                 $this->dbforge->create_table('authors');

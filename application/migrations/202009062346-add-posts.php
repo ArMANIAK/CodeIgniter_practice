@@ -38,6 +38,11 @@ class Migration_Add_authors extends CI_Migration {
                             'type' => 'DATE',
                             'constraint' => '1023',
                         ),
+                        'newsViews' => array(
+                                'type' => 'INT',
+                                'constraint' => 10,
+                                'unsigned' => TRUE,
+                        ),
                 ));
                 $this->dbforge->add_key('id', TRUE);
                 $this->dbforge->create_table('posts');
