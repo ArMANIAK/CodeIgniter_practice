@@ -7,5 +7,7 @@
                 <a href="<?=$socialNetLink?>"><?=explode('/', $socialNetLink)[1]?></a>
             </p>
         <?php endforeach ?>
+        <p class="counter"><?=$author->profileViews?></p>
     </div>
 </article>
+<script src='<?=base_url('public/counter.js')?>'></script>

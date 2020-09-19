@@ -30,4 +30,11 @@ class Authors extends CI_Controller {
 		}
 		$this->load->view('templates/footer');
 	}
+
+	public function viewsIncrement($authorId) 
+	{
+		$this->load->model('authors_model');
+		$this->authors_model->incrementViews($authorId);
+	}
+
 }
