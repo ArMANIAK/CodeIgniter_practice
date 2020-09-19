@@ -8,7 +8,6 @@ window.onload = () => {
     console.log(url);
     request.addEventListener('readystatechange', () => {
         if ((request.readyState==4) && (request.status==200)) {
-            alert('Loaded and incremented');
             counter.innerText = parseInt(counter.innerText) + 1;
         }
     })
