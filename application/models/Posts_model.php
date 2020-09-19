@@ -17,6 +17,15 @@ class Posts_model extends CI_Model
         return $result->result();
     }
 
+    public function getPost($id)
+    {
+        $this->db->from('posts')
+                ->join('authors', 'posts.author = authors.authorId', 'right')
+                ->where('posts.id', $id);
+        $result = $this->db->get();
+        return $result->result();
+    }
+
     public function filterByDate($date) 
     {
         $this->db->from('posts')
