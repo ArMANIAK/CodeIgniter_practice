@@ -6,7 +6,6 @@
         <li><a href="<?= base_url('index.php/posts/getPostsByDate'); ?>">Most popular</a></li>
         <li><a href="<?= base_url('index.php/authors'); ?>">Our bloggers</a></li>
         <li>In case of emergency</li>
-        <li>really long string In case of emergency really long string In case of emergency really long string In case of emergency</li>
     </ul>
 </nav>
 <section class="content">
