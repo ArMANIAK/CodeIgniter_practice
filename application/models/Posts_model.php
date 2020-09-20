@@ -12,7 +12,8 @@ class Posts_model extends CI_Model
     public function getAllPosts()
     {
         $this->db->from('posts')
-                ->join('authors', 'posts.author = authors.authorId', 'right');
+                ->join('authors', 'posts.author = authors.authorId', 'right')
+                ->order_by('posts.date', 'DESC');
         $result = $this->db->get();
         return $result->result();
     }
@@ -49,7 +50,8 @@ class Posts_model extends CI_Model
     {
         $this->db->from('posts')
                 ->join('authors', 'posts.author = authors.authorId', 'right')
-                ->where('posts.author', $authorId);
+                ->where('posts.author', $authorId)
+                ->order_by('posts.date', 'DESC');
         $result = $this->db->get();
         return $result->result();
     }
