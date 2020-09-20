@@ -8,7 +8,7 @@ window.onload = () => {
     console.log(url);
     request.addEventListener('readystatechange', () => {
         if ((request.readyState==4) && (request.status==200)) {
-            counter.innerText = parseInt(counter.innerText) + 1;
+            counter.innerText = 'Views: ' + (parseInt(counter.innerText.split(' ')[1]) + 1);
         }
     })
     request.send();

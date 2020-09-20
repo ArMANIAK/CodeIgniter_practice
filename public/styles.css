@@ -63,7 +63,7 @@ h3 {
     Styles for posts
 */
 
-p.counter {
+article.post > p.counter {
     position: absolute;
     bottom: 0vw;
     left: 1vw;
