@@ -74,4 +74,15 @@ class Posts_model extends CI_Model
         $result = $this->db->get();
         return $result->result();
     }
+
+    public function readMore($postId)
+    {
+        $this->db->from('posts')
+                ->join('authors', 'posts.author = authors.authorId', 'right')
+                ->where('posts.id !=', $postId)
+                ->order_by('newsViews', 'DESC')
+                ->limit(2);
+        $result = $this->db->get();
+        return $result->result();
+    }
 }
