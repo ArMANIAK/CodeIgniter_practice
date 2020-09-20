@@ -37,6 +37,11 @@ class Posts extends CI_Controller {
 		$data['post'] = $this->posts_model->getPost($postId)[0];
 		$data['tags'] = $this->posts_model->getTagsForPost($postId);
 		$this->load->view('post_page', $data);
+		foreach($this->posts_model->readMore($postId) as $data['post']) 
+		{
+			$data['tags'] = $this->posts_model->getTagsForPost($data['post']->id);
+			$this->load->view('templates/post', $data);
+		}
 		$this->load->view('templates/footer');
 	}
 
