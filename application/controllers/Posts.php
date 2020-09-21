@@ -8,7 +8,11 @@ class Posts extends CI_Controller {
 		$this->load->model('posts_model');
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		foreach($this->posts_model->getAllPosts() as $data['post']) $this->load->view('templates/post', $data);
+		foreach($this->posts_model->getAllPosts() as $data['post']) 
+		{
+			$data['tags'] = $this->posts_model->getTagsForPost($data['post']->id);
+			$this->load->view('templates/post', $data);
+		}
 		$this->load->view('templates/footer');
 	}
 
@@ -17,17 +21,34 @@ class Posts extends CI_Controller {
 		$this->load->model('posts_model');
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		foreach($this->posts_model->filterByDate($date) as $data['post']) $this->load->view('templates/post', $data);
+		foreach($this->posts_model->filterByDate($date) as $data['post']) 
+		{
+			$data['tags'] = $this->posts_model->getTagsForPost($data['post']->id);
+			$this->load->view('templates/post', $data);
+		}
 		$this->load->view('templates/footer');
 	}
 
-	public function getAuthorsList()
+	public function showPostPage($postId) 
 	{
 		$this->load->model('posts_model');
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		foreach($this->posts_model->authorsList() as $data['author']) $this->load->view('templates/author', $data);
+		$data['post'] = $this->posts_model->getPost($postId)[0];
+		$data['tags'] = $this->posts_model->getTagsForPost($postId);
+		$this->load->view('post_page', $data);
+		foreach($this->posts_model->readMore($postId) as $data['post']) 
+		{
+			$data['tags'] = $this->posts_model->getTagsForPost($data['post']->id);
+			$this->load->view('templates/post', $data);
+		}
 		$this->load->view('templates/footer');
+	}
+
+	public function viewsIncrement($postId) 
+	{
+		$this->load->model('posts_model');
+		$this->posts_model->incrementViews($postId);
 	}
 
 	public function getPostsByAuthor($authorId)
@@ -35,7 +56,24 @@ class Posts extends CI_Controller {
 		$this->load->model('posts_model');
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		foreach($this->posts_model->filterByAuthor($authorId) as $data['post']) $this->load->view('templates/post', $data);
+		foreach($this->posts_model->filterByAuthor($authorId) as $data['post']) 
+		{
+			$data['tags'] = $this->posts_model->getTagsForPost($data['post']->id);
+			$this->load->view('templates/post', $data);
+		}
+		$this->load->view('templates/footer');
+	}
+
+	public function getPostsByTag($tagId)
+	{
+		$this->load->model('posts_model');
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		foreach($this->posts_model->filterByTag($tagId) as $data['post']) 
+		{
+			$data['tags'] = $this->posts_model->getTagsForPost($data['post']->id);
+			$this->load->view('templates/post', $data);
+		}
 		$this->load->view('templates/footer');
 	}
 }
