@@ -11,5 +11,7 @@
 	<title>iDev blog</title>
 </head>
 <body>
-	<h1>This is awesome blog!</h1>
+	<div class="header">
+		<h1>This is awesome blog!</h1>
+	</div>
 	<div class="container">

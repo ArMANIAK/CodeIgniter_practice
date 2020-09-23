@@ -1,5 +1,5 @@
 <nav>
-    <?= $this->calendar->generate();?>
+    <?= $this->calendar->generate(date('Y'), date('n'), $links);?>
     <ul>
         <li><a href="<?= base_url(); ?>">Home page</a></li>
         <li><a href="<?= base_url('index.php/posts/getPostsByDate/' . date('yy-m-d')); ?>">Today's news</a></li>

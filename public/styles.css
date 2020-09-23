@@ -3,14 +3,26 @@ body {
 }
 
 body * {
+    /* background-color:#E0DDCF; */
     color: #220901;
 }
 /* 
 body > * {
-    background-color: #DADADE;
+    background-color:#E0DDCF;
 } */
 
+.header {
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #E0DDCF;
+    margin-bottom: 15px;
+    box-shadow: 0px 3px 5px  #231123;
+}
+
 h1 {
+    padding-left: 25px;
     color: #231123;
 }
 
@@ -23,7 +35,6 @@ nav {
     min-width: 15rem;
     max-width: 25rem;
     padding: 10px;
-    background-color: #E0DDCF;
     display: flex;
     flex-direction: column-reverse;
     margin: 0px 10px;
@@ -31,7 +42,26 @@ nav {
 
 nav > ul {
     padding-bottom: 10px;
-    border-bottom: white solid 1px;
+    border-bottom:  #231123 solid 1px;
+}
+
+@media screen and (max-width: 720px) {
+    div.container {
+        flex-direction: column;
+    }
+
+    nav {
+        margin: 10px 0px;
+        flex-direction: row-reverse;
+    }
+
+    nav > ul {
+        margin-right: 10px;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        border-bottom: none;
+        border-right:  #231123 solid 1px;
+    }
 }
 
 section.content {
@@ -69,19 +99,27 @@ article.post > p.counter {
     left: 1vw;
 }
 
+article.post > p.date {
+    position: absolute;
+    top: 0vw;
+    left: 1vw;
+}
+
 article.post {
     position: relative;
     border-radius: 5px;
     margin: 0px 10px 15px;
+    box-shadow: 3px 3px 5px  #231123;
     background-color:  #E0DDCF;
     display: flex;
     transition: all 0.5s;
+    height: 25vh;
+    width: 95%;
 }
 
 article.post > img {
     border-radius: 5px 0px 0px 5px;
-    height: auto;
-    width: 20vw;
+    height: 100%;
 }
 
 main.post {
@@ -102,6 +140,7 @@ a.tag {
 }
 
 footer {
+    box-shadow: 0px 3px 5px  #231123;
     background-color: #E0DDCF;
     min-height: 10vw;
     padding: 10px;
