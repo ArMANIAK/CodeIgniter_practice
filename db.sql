@@ -18,12 +18,13 @@ USE `blog`;
 
 -- Дамп структуры для таблица blog.authors
 CREATE TABLE IF NOT EXISTS `authors` (
-  `id` int(10) unsigned NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `avatar` varchar(255) NOT NULL,
-  `socialNetworks` varchar(1023) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+  `authorId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '0',
+  `avatar` varchar(255) NOT NULL DEFAULT '0',
+  `socialNetworks` varchar(1023) NOT NULL DEFAULT '0',
+  `profileViews` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`authorId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf16;
 
 -- Экспортируемые данные не выделены.
 
@@ -35,25 +36,26 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `preview` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `author` int(10) unsigned NOT NULL,
-  `date` timestamp NOT NULL,
+  `date` date NOT NULL,
+  `newsViews` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `author` (`author`),
-  CONSTRAINT `author` FOREIGN KEY (`author`) REFERENCES `authors` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+  CONSTRAINT `author` FOREIGN KEY (`author`) REFERENCES `authors` (`authorId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf16;
 
 -- Экспортируемые данные не выделены.
 
 -- Дамп структуры для таблица blog.posts_tags
 CREATE TABLE IF NOT EXISTS `posts_tags` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `relationId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `post_id` int(10) unsigned NOT NULL,
   `tag_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`relationId`),
   KEY `tag_id` (`tag_id`),
   KEY `post_id` (`post_id`),
   CONSTRAINT `post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
   CONSTRAINT `tag_id` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf16;
 
 -- Экспортируемые данные не выделены.
 
@@ -62,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tag` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf16;
 
 -- Экспортируемые данные не выделены.
 
